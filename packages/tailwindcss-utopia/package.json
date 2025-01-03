@@ -1,0 +1,44 @@
+{
+  "name": "tailwindcss-utopia",
+  "type": "module",
+  "version": "0.0.1",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "description": "",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs"
+  },
+  "scripts": {
+    "build": "bun run build.ts",
+    "prepublishOnly": "bun run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "bun"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Locastic/tailwindcss-utopia",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Locastic/tailwindcss-utopia.git"
+  },
+  "bugs": "https://github.com/Locastic/tailwindcss-utopia/issues",
+  "author": "Mortadha Ghanmi <mortadha.ghanmi56@gmail.com>",
+  "dependencies": {
+    "utopia-core": "^1.6.0"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.10",
+    "bun-plugin-dts": "^0.3.0",
+    "tailwindcss-priv": "npm:tailwindcss@3.4.14",
+    "typescript": "^5.7.2"
+  }
+}
