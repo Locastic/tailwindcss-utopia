@@ -55,21 +55,21 @@ By default the utopia entry in tailwindcss config is as follows:
 
 ```ts
 {
-	utopia: {
-		minScreen: "320px",
-		minSize: 18,
-		minScale: 1.2,
-		maxScreen: "1240px",
-		maxSize: 20,
-		maxScale: 1.25,
-		positiveSteps: 5,
-		negativeSteps: 2,
-		spacingSteps: {
-			negative: [0.75, 0.5, 0.25],
-			positive: [1.5, 2, 3, 4, 6],
-		},
-		spacingPairs: ["s-l"],
-	},
+  utopia: {
+    minScreen: "320px",
+    minSize: 18,
+    minScale: 1.2,
+    maxScreen: "1240px",
+    maxSize: 20,
+    maxScale: 1.25,
+    positiveSteps: 5,
+    negativeSteps: 2,
+    spacingSteps: {
+      negative: [0.75, 0.5, 0.25],
+      positive: [1.5, 2, 3, 4, 6],
+    },
+    spacingPairs: ["s-l"],
+  },
 }
 ```
 
