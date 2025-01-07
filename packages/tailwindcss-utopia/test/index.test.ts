@@ -112,8 +112,6 @@ describe("default config should", () => {
 
     const result = await run(content);
 
-    console.log("A");
-
     expect(result.css).toMatchFormattedCss(css`
       .\~m-2xl {
         margin: var(--space-2xl); /* 72 ${"→"} 80 */
