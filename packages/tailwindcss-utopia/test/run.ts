@@ -6,7 +6,6 @@ import tailwindcssUtopia, { extract } from "../src";
 
 export let css = String.raw;
 export let html = String.raw;
-export let javascript = String.raw;
 
 export function run(
   content: string,

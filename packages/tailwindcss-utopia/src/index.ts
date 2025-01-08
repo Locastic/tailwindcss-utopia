@@ -71,8 +71,7 @@ const textSizes: PluginCreator = ({ addBase, matchUtilities, theme }) => {
     (values, { label, clamp }) => {
       root[`--step-${label}`] = clamp;
 
-      const name =
-        label === "0" ? "1" : +label < 0 ? `1/x${+label * -1}` : `x${label}`;
+      const name = label === "0" ? "1" : `x${label}`;
 
       values[name] = `var(--step-${label}) ${getCommentFromClamp(clamp)}`;
 
@@ -110,10 +109,7 @@ const textSizes: PluginCreator = ({ addBase, matchUtilities, theme }) => {
           // TODO: add default param to choose between min or max
           max = Number(value);
         } else {
-          if (value.includes("1/x")) {
-            value = value.replace("1/x", "");
-            step = Number(value) * -1;
-          } else if (value.includes("x")) {
+          if (value.includes("x")) {
             value = value.replace("x", "");
             step = Number(value);
           } else {

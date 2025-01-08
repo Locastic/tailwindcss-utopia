@@ -1,4 +1,5 @@
 import { describe, it, expect } from "bun:test";
+
 import { css, html, run } from "./run";
 
 describe("default config should", () => {
@@ -50,8 +51,8 @@ describe("default config should", () => {
       <span class="~text-x2"></span>
       <span class="~text-x1"></span>
       <span class="~text-1"></span>
-      <span class="~text-1/x1"></span>
-      <span class="~text-1/x2"></span>
+      <span class="~text-x-1"></span>
+      <span class="~text-x-2"></span>
     </div>`;
 
     const result = await run(content);
@@ -60,10 +61,10 @@ describe("default config should", () => {
       .\~text-1 {
         font-size: var(--step-0); /* 18 ${"→"} 20 */
       }
-      .\~text-1\/x1 {
+      .\~text-x-1 {
         font-size: var(--step--1); /* 15 ${"→"} 16 */
       }
-      .\~text-1\/x2 {
+      .\~text-x-2 {
         font-size: var(--step--2); /* 12.5008 ${"→"} 12.8 */
       }
       .\~text-x1 {
