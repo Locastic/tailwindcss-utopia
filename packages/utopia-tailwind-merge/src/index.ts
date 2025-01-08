@@ -1,4 +1,4 @@
-import { mergeConfigs, type Config } from "tailwind-merge";
+import { mergeConfigs, validators, type Config } from "tailwind-merge";
 
 export function withUtopia(config: Config<string, string>) {
   const classGroups = Object.entries(config.classGroups)
@@ -7,7 +7,7 @@ export function withUtopia(config: Config<string, string>) {
     )
     .reduce((acc, [name, group]) => {
       const groupName = Object.keys(group[0])[0];
-      const def = [(val: any) => !!val];
+      const def = [validators.isAny];
 
       return {
         ...acc,
