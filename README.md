@@ -21,7 +21,7 @@ Because of the configuration utopia provides, values in this plugin are divided 
 
 For font size values, utility classes are generated from the utopia configuration `negativeSteps` & `positiveSteps`, so we kept using the default configuration, the following will be generated:
 
-- `~text-x5`, `~text-x4`, `~text-x3`, `~text-x2`, `~text-x1`, `~text-1`, `~text-1/x1`, `~text-1/x2`: basically meaning that the size is the base size multiplied by scale x times, `text-1` means `text-x0`. This feels a bit weird but I'm open to suggestions.
+- `~text-x5`, `~text-x4`, `~text-x3`, `~text-x2`, `~text-x1`, `~text-1`, `~text-x-1`, `~text-x-2`: basically meaning that the size is the base size multiplied by scale x times, `text-1` means `text-x0`.
 
 Note that with font size utility, you cannot use the negative variant.
 
@@ -47,7 +47,7 @@ But if you choose to use the negative utility class instead (`~-inset-[value]`),
 Now the extra format that the font size utility has, is setting a custom scale multiplier like the following:
 
 - `[x2]`: which means, both min and max will be the base size multiplied twice by the scale, which will be the same as `~text-x2`
-- `[1/x4]`: here, the size will be base size divided 4 times by the scale, which is the same as `~text-1/x4` if you set the `negativeSteps` in utopia config to `4` or more.
+- `[x-4]`: here, the size will be base size divided 4 times by the scale, which is the same as `~text-x-4` if you set the `negativeSteps` in utopia config to `4` or more.
 
 ## Config
 
