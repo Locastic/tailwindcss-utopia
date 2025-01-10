@@ -30,7 +30,7 @@ jobs:
           cd ../utopia-tailwind-merge
           bun publish
         env:
-          BUN_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NPM_CONFIG_TOKEN: ${{secrets.NPM_TOKEN}}
 
       - name: Generate changelogs
         run: bunx changelogithub
