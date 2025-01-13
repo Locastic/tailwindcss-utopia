@@ -11,7 +11,7 @@ await Promise.all([
     ...defaultBuildConfig,
     plugins: [dts()],
     format: "esm",
-    target: "node",
+    target: "browser",
     naming: "[dir]/[name].js",
     external: ["tailwindcss"],
   }),
