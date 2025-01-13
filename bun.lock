@@ -8,7 +8,7 @@
     },
     "packages/tailwindcss-utopia": {
       "name": "tailwindcss-utopia",
-      "version": "0.0.1",
+      "version": "0.0.3",
       "dependencies": {
         "utopia-core": "^1.6.0",
       },
@@ -26,7 +26,7 @@
     },
     "packages/utopia-tailwind-merge": {
       "name": "utopia-tailwind-merge",
-      "version": "0.0.1",
+      "version": "0.0.3",
       "devDependencies": {
         "@types/bun": "^1.1.10",
         "bun-plugin-dts": "^0.3.0",

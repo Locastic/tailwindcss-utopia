@@ -1,5 +1,6 @@
 import type { BuildConfig } from "bun";
 import dts from "bun-plugin-dts";
+import transformImportsInCorePlugins from "./plugins/transform-imports-in-corePlugins";
 
 const defaultBuildConfig: BuildConfig = {
   entrypoints: ["./src/index.ts"],
@@ -9,19 +10,18 @@ const defaultBuildConfig: BuildConfig = {
 await Promise.all([
   Bun.build({
     ...defaultBuildConfig,
-    plugins: [dts()],
+    plugins: [dts(), transformImportsInCorePlugins()],
     format: "esm",
-    target: "browser",
+    target: "node",
     naming: "[dir]/[name].js",
     external: ["tailwindcss"],
-    minify: true,
   }),
   Bun.build({
     ...defaultBuildConfig,
+    plugins: [transformImportsInCorePlugins()],
     format: "cjs",
     target: "node",
     naming: "[dir]/[name].cjs",
     external: ["tailwindcss"],
-    minify: true,
   }),
 ]);
