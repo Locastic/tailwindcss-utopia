@@ -1,7 +1,7 @@
 {
   "name": "tailwindcss-utopia",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -12,6 +12,7 @@
     "require": "./dist/index.cjs"
   },
   "scripts": {
+    "abc": "bun run abc.ts",
     "build": "bun run build.ts",
     "prepublishOnly": "bun run build"
   },
@@ -38,6 +39,7 @@
   "devDependencies": {
     "@types/bun": "^1.1.10",
     "bun-plugin-dts": "^0.3.0",
+    "esinstall": "^1.1.7",
     "jest-diff": "^29.7.0",
     "prettier": "^3.4.2",
     "tailwindcss-priv": "npm:tailwindcss@3.4.14",
