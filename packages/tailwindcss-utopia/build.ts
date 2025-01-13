@@ -14,6 +14,7 @@ await Promise.all([
     target: "browser",
     naming: "[dir]/[name].js",
     external: ["tailwindcss"],
+    minify: true,
   }),
   Bun.build({
     ...defaultBuildConfig,
@@ -21,5 +22,6 @@ await Promise.all([
     target: "node",
     naming: "[dir]/[name].cjs",
     external: ["tailwindcss"],
+    minify: true,
   }),
 ]);
