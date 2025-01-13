@@ -4,7 +4,7 @@
     "packages/*"
   ],
   "scripts": {
-    "release": "bun run bumpp -r"
+    "release": "bun run bumpp --no-push -r"
   },
   "devDependencies": {
     "bumpp": "^9.10.0"
