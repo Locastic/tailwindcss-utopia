@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "bun run build.ts",
-    "prepublishOnly": "bun run build && bunx @biome/biome lint --only=correctness/noUnusedImports --write dist/index.js"
+    "prepublishOnly": "bun run build && bunx @biomejs/biome lint --only=correctness/noUnusedImports --write dist/index.js"
   },
   "files": [
     "dist"
