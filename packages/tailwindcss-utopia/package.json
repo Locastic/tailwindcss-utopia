@@ -1,7 +1,7 @@
 {
   "name": "tailwindcss-utopia",
   "type": "module",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "bun run build.ts",
-    "prepublishOnly": "bun run build"
+    "prepublishOnly": "bun run build && bunx @biome/biome lint --only=correctness/noUnusedImports --write dist/index.js"
   },
   "files": [
     "dist"
