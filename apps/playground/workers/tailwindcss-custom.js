@@ -1,4 +1,4 @@
-import tailwindcssUtopia, { extract } from "tailwindcss-utopia-fixed";
+import tailwindcssUtopia, { extract } from "tailwindcss-utopia";
 
 import { initialize } from "monaco-tailwindcss/tailwindcss.worker.js";
 
