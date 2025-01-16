@@ -1,7 +1,7 @@
 {
   "name": "tailwindcss-utopia",
   "type": "module",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -49,6 +49,7 @@
     "rollup-plugin-delete": "^2.1.0",
     "rollup-plugin-node-externals": "^8.0.0",
     "tailwindcss-priv": "npm:tailwindcss@3.4.14",
+    "tslib": "^2.8.1",
     "typescript": "^5.7.2"
   }
 }
