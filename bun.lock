@@ -14,7 +14,6 @@
         "@radix-ui/react-tabs": "^1.1.2",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
-        "fluid-tailwind": "^1.0.4",
         "lucide-react": "^0.471.1",
         "monaco-editor-webpack-plugin": "^7.1.0",
         "monaco-tailwindcss": "^0.6.1",
@@ -24,7 +23,7 @@
         "react-resizable-panels": "^2.1.7",
         "tailwind-merge": "^2.6.0",
         "tailwindcss-animate": "^1.0.7",
-        "tailwindcss-utopia": "packages/tailwindcss-utopia",
+        "tailwindcss-utopia": "^0.0.14",
       },
       "devDependencies": {
         "@eslint/eslintrc": "^3",
@@ -634,15 +633,11 @@
 
     "fill-range": ["fill-range@7.1.1", "", { "dependencies": { "to-regex-range": "^5.0.1" } }, "sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg=="],
 
-    "filter-obj": ["filter-obj@5.1.0", "", {}, "sha512-qWeTREPoT7I0bifpPUXtxkZJ1XJzxWtfoWWkdVGqa+eCr3SHW/Ocp89o8vLvbUuQnadybJpjOKu4V+RwO6sGng=="],
-
     "find-up": ["find-up@5.0.0", "", { "dependencies": { "locate-path": "^6.0.0", "path-exists": "^4.0.0" } }, "sha512-78/PXT1wlLLDgTzDs7sjq9hzz0vXD+zn+7wypEe4fXQxCmdmqfGsEPQxmiCSQI3ajFV91bVSsvNtrJRiW6nGng=="],
 
     "flat-cache": ["flat-cache@4.0.1", "", { "dependencies": { "flatted": "^3.2.9", "keyv": "^4.5.4" } }, "sha512-f7ccFPK3SXFHpx15UIGyRJ/FJQctuKZ0zVuN3frBo4HnK3cay9VEW0R6yPYFHC0AgqhukPzKjq22t5DmAyqGyw=="],
 
     "flatted": ["flatted@3.3.2", "", {}, "sha512-AiwGJM8YcNOaobumgtng+6NHuOqC3A7MixFeDafM3X9cIUM+xUXoS5Vfgf+OihAYe20fxqNM9yPBXJzRtZ/4eA=="],
-
-    "fluid-tailwind": ["fluid-tailwind@1.0.4", "", { "dependencies": { "filter-obj": "^5.1.0", "map-obj": "^5.0.2", "picocolors": "^1.0.0" }, "peerDependencies": { "tailwindcss": "^3.2.0" } }, "sha512-jO1+4l4r3kE/5We3kYRl3o4JsbFA2zoluEwJG3VrytlKuCfK4aTv5QHqXgOaw0YQd9HKjOVIFYsVvhG8sxIh5w=="],
 
     "for-each": ["for-each@0.3.3", "", { "dependencies": { "is-callable": "^1.1.3" } }, "sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw=="],
 
@@ -861,8 +856,6 @@
     "lucide-react": ["lucide-react@0.471.1", "", { "peerDependencies": { "react": "^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0" } }, "sha512-syOxwPhf62gg2YOsz72HRn+CIpeudFy67AeKnSR8Hn/fIIF4ubhNbRF+pQ2CaJrl+X9Os4PL87z2DXQi3DVeDA=="],
 
     "magic-string": ["magic-string@0.30.17", "", { "dependencies": { "@jridgewell/sourcemap-codec": "^1.5.0" } }, "sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA=="],
-
-    "map-obj": ["map-obj@5.0.2", "", {}, "sha512-K6K2NgKnTXimT3779/4KxSvobxOtMmx1LBZ3NwRxT/MDIR3Br/fQ4Q+WCX5QxjyUR8zg5+RV9Tbf2c5pAWTD2A=="],
 
     "math-intrinsics": ["math-intrinsics@1.1.0", "", {}, "sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g=="],
 
@@ -1170,7 +1163,7 @@
 
     "tailwindcss-utopia": ["tailwindcss-utopia@workspace:packages/tailwindcss-utopia", { "dependencies": { "utopia-core": "^1.6.0" }, "devDependencies": { "@rollup/plugin-commonjs": "^28.0.2", "@rollup/plugin-json": "^6.1.0", "@rollup/plugin-node-resolve": "^16.0.0", "@rollup/plugin-typescript": "^12.1.2", "@types/bun": "^1.1.10", "bun-plugin-dts": "^0.3.0", "jest-diff": "^29.7.0", "prettier": "^3.4.2", "rollup": "^4.30.1", "rollup-plugin-delete": "^2.1.0", "rollup-plugin-node-externals": "^8.0.0", "tailwindcss-priv": "npm:tailwindcss@3.4.14", "tslib": "^2.8.1", "typescript": "^5.7.2" }, "peerDependencies": { "tailwindcss": "^3.2.0" } }],
 
-    "tailwindcss-utopia-playground": ["tailwindcss-utopia-playground@workspace:apps/playground", { "dependencies": { "@monaco-editor/react": "^4.6.0", "@radix-ui/react-tabs": "^1.1.2", "class-variance-authority": "^0.7.1", "clsx": "^2.1.1", "fluid-tailwind": "^1.0.4", "lucide-react": "^0.471.1", "monaco-editor-webpack-plugin": "^7.1.0", "monaco-tailwindcss": "^0.6.1", "next": "15.1.4", "react": "^19.0.0", "react-dom": "^19.0.0", "react-resizable-panels": "^2.1.7", "tailwind-merge": "^2.6.0", "tailwindcss-animate": "^1.0.7", "tailwindcss-utopia": "packages/tailwindcss-utopia" }, "devDependencies": { "@eslint/eslintrc": "^3", "@types/node": "^20", "@types/react": "^19", "@types/react-dom": "^19", "eslint": "^9", "eslint-config-next": "15.1.4", "postcss": "^8", "tailwindcss": "^3.4.1", "typescript": "^5" } }],
+    "tailwindcss-utopia-playground": ["tailwindcss-utopia-playground@workspace:apps/playground", { "dependencies": { "@monaco-editor/react": "^4.6.0", "@radix-ui/react-tabs": "^1.1.2", "class-variance-authority": "^0.7.1", "clsx": "^2.1.1", "lucide-react": "^0.471.1", "monaco-editor-webpack-plugin": "^7.1.0", "monaco-tailwindcss": "^0.6.1", "next": "15.1.4", "react": "^19.0.0", "react-dom": "^19.0.0", "react-resizable-panels": "^2.1.7", "tailwind-merge": "^2.6.0", "tailwindcss-animate": "^1.0.7", "tailwindcss-utopia": "^0.0.14" }, "devDependencies": { "@eslint/eslintrc": "^3", "@types/node": "^20", "@types/react": "^19", "@types/react-dom": "^19", "eslint": "^9", "eslint-config-next": "15.1.4", "postcss": "^8", "tailwindcss": "^3.4.1", "typescript": "^5" } }],
 
     "tapable": ["tapable@2.2.1", "", {}, "sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ=="],
 
@@ -1347,6 +1340,8 @@
     "string-width/emoji-regex": ["emoji-regex@8.0.0", "", {}, "sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A=="],
 
     "string-width-cjs/emoji-regex": ["emoji-regex@8.0.0", "", {}, "sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A=="],
+
+    "tailwindcss-utopia-playground/tailwindcss-utopia": ["tailwindcss-utopia@0.0.14", "", { "dependencies": { "utopia-core": "^1.6.0" }, "peerDependencies": { "tailwindcss": "^3.2.0" } }, "sha512-ki0QkTE0eF1+ly9RxN6YarOCckl33fWTn8Sfo0uEGKuwpWBpsmH0sGim2YPsPMitFqLO8OKU6cbdaTrlEcXY+w=="],
 
     "tar/minipass": ["minipass@5.0.0", "", {}, "sha512-3FnjYuehv9k6ovOEbyOswadCDPX1piCfhV8ncmYtHOjuPwylVWsghTLo7rabjC3Rx5xD4HDx8Wm1xnMF7S5qFQ=="],
 

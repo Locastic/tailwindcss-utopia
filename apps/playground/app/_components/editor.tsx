@@ -111,9 +111,7 @@ body {
   const monacoTailwindcssRef = useRef<MonacoTailwindcss>(null);
 
   const handleChange = async () => {
-    console.log('a');
     if (!monacoTailwindcssRef.current) return;
-    console.log('b');
 
     const css = await monacoTailwindcssRef.current.generateStylesFromContent(
       tabs.css.getValue(),

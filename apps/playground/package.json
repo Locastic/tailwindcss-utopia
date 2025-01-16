@@ -13,7 +13,6 @@
     "@radix-ui/react-tabs": "^1.1.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "fluid-tailwind": "^1.0.4",
     "lucide-react": "^0.471.1",
     "monaco-editor-webpack-plugin": "^7.1.0",
     "monaco-tailwindcss": "^0.6.1",
@@ -23,7 +22,7 @@
     "react-resizable-panels": "^2.1.7",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
-    "tailwindcss-utopia": "workspace:*"
+    "tailwindcss-utopia": "^0.0.14"
   },
   "devDependencies": {
     "typescript": "^5",
