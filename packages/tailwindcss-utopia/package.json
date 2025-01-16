@@ -12,8 +12,9 @@
     "require": "./dist/index.cjs"
   },
   "scripts": {
-    "build": "bun run build.ts",
-    "prepublishOnly": "bun run build && bunx @biomejs/biome lint --only=correctness/noUnusedImports --write dist/index.js"
+    "dev": "rollup -cw",
+    "build": "rollup -c",
+    "prepublishOnly": "bun run build && bun test"
   },
   "files": [
     "dist"
