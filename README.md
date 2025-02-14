@@ -4,9 +4,9 @@ A TailwindCSS plugin for the utopia fluid design system
 
 ## Install
 
-```bash
 To install the utopia taiwindcss plugin:
 
+```bash
 pnpm add -D tailwindcss-utopia
 ```
 
