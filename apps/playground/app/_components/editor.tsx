@@ -1,26 +1,5 @@
 "use client";
 
-/*
-const mockModule = { hello: 'world' };
-const require = (moduleName) => {
-  if (moduleName === 'mock-module') return mockModule;
-  throw new Error(`Module '${moduleName}' not found`);
-};
-
-const someVariable = 42;
-
-import tailwindcssUtopia from "https://esm.sh/tailwindcss-utopia@0.0.3";
-
-@type {import('tailwindcss').Config}
-
-export default {
-  tailwindcssUtopia,
-  someVariable,
-  mockModule: require('mock-module'),
-};
-
-*/
-
 import { useEffect, useRef, useState } from "react";
 import * as monaco from "monaco-editor";
 import { Editor as MonacoEditor, loader } from "@monaco-editor/react";
@@ -30,7 +9,8 @@ import {
   TailwindConfig,
   tailwindcssData,
 } from "monaco-tailwindcss";
-import { css, generateSrcDoc, html, js } from "@/lib/utils";
+import { generateSrcDoc } from "@/lib/utils";
+import { defaultConfig, defaultCss, defaultHtml } from "@/lib/content";
 
 type Refs = Parameters<
   NonNullable<React.ComponentProps<typeof MonacoEditor>["onMount"]>
@@ -39,6 +19,40 @@ type EditorRef = Refs[0];
 type MonacoEditorRef = Refs[1];
 
 loader.config({ monaco });
+
+function importAll(rc: __WebpackModuleApi.RequireContext) {
+  return rc.keys().map((path) => ({ path, mod: rc(path).default as string }));
+}
+
+const tailwindRoot = require.context(
+  "!!raw-loader!tailwindcss/",
+  false,
+  /\.d\.ts$/,
+);
+const tailwindTypes = require.context(
+  "!!raw-loader!tailwindcss/types/",
+  true,
+  /\.d\.ts$/,
+);
+
+const types = {
+  "index.d.ts": 'export * from "./types/config"',
+  ...Object.fromEntries(
+    importAll(tailwindRoot).map(({ path, mod }) => [
+      path.replace("./", ""),
+      mod,
+    ]),
+  ),
+  ...Object.fromEntries(
+    importAll(tailwindTypes).map(({ path, mod }) => [
+      path.replace("./", "types/"),
+      mod.replace(
+        /interface RequiredConfig \{.*?\}/s,
+        "interface RequiredConfig {}",
+      ),
+    ]),
+  ),
+};
 
 export default function Editor({
   activeTab,
@@ -51,61 +65,9 @@ export default function Editor({
   const monacoEditorRef = useRef<MonacoEditorRef | null>(null);
 
   const [tabs] = useState(() => ({
-    html: monaco.editor.createModel(
-      html`<h1>Heading H1</h1>
-<h2>Heading H2</h2>
-<h3>Heading H3</h3>
-<h4>Heading H4</h4>
-<h5>Heading H5</h5>
-<h6>Heading H6</h6>
-`,
-      "html",
-    ),
-    css: monaco.editor.createModel(
-      css`@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-bold;
-}
-
-h1 {
-  @apply ~text-x5;
-}
-
-h2 {
-  @apply ~text-x4;
-}
-
-h3 {
-  @apply ~text-x3;
-}
-
-h4 {
-  @apply ~text-x2;
-}
-
-h5 {
-  @apply ~text-x1;
-}
-
-body {
-  @apply ~text-1;
-}
-`,
-      "css",
-    ),
-    config: monaco.editor.createModel(js`export default {
-  theme: {},
-  plugins: [], /* plugins should be empty */
-};
-`, "typescript"),
+    html: monaco.editor.createModel(defaultHtml, "html"),
+    css: monaco.editor.createModel(defaultCss, "css"),
+    config: monaco.editor.createModel(defaultConfig, "typescript"),
   }));
 
   const monacoTailwindcssRef = useRef<MonacoTailwindcss>(null);
@@ -118,7 +80,6 @@ body {
       [{ content: tabs.html.getValue() }],
     );
     const html = tabs.html.getValue();
-    // const config = tabs.config.getValue();
 
     const content = generateSrcDoc(html, css);
 
@@ -140,30 +101,33 @@ body {
   }, []);
 
   useEffect(() => {
-    tabs["config"].onDidChangeContent(() => {
-      const code = tabs["config"].getValue();
+    Object.entries(tabs).map(([name, tab]) => {
+      if (name === "html") {
+        tab.updateOptions({ tabSize: 2 });
+      }
 
-      let evaluatedCode;
+      tab.onDidChangeContent(() => {
+        if (name === "config") {
+          const code = tab.getValue();
 
-      const blob = new Blob([code], { type: "application/javascript" });
-      const url = URL.createObjectURL(blob);
+          const blob = new Blob([code], { type: "application/javascript" });
+          const url = URL.createObjectURL(blob);
 
-      import(/* webpackIgnore: true */ url)
-        .then((module) => {
-          evaluatedCode = module.default;
+          import(/* webpackIgnore: true */ url)
+            .then((module) => {
+              const evaluatedCode: TailwindConfig = module.default;
 
-          monacoTailwindcssRef.current?.setTailwindConfig(
-            evaluatedCode as TailwindConfig,
-          );
-        })
-        .catch((error) => {
-          console.error("Error evaluating code:", error.message);
-          evaluatedCode = null;
-        });
-    });
+              monacoTailwindcssRef.current?.setTailwindConfig(evaluatedCode);
 
-    Object.values(tabs).map((tab) => {
-      tab.onDidChangeContent(handleChange);
+              handleChange();
+            })
+            .catch((error) => {
+              console.error("Error evaluating code:", error.message);
+            });
+        } else {
+          handleChange();
+        }
+      });
     });
   }, []);
 
@@ -182,6 +146,32 @@ body {
               tailwindcssData,
             },
           },
+        });
+
+        monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions({
+          noSemanticValidation: false,
+          noSyntaxValidation: false,
+          noSuggestionDiagnostics: false,
+        });
+
+        monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
+          allowJs: true,
+          allowNonTsExtensions: true,
+          module: monaco.languages.typescript.ModuleKind.CommonJS,
+          target: monaco.languages.typescript.ScriptTarget.Latest,
+          checkJs: true,
+          moduleResolution:
+            monaco.languages.typescript.ModuleResolutionKind.NodeJs,
+          typeRoots: ["node_modules/@types"],
+          esModuleInterop: true,
+          allowSyntheticDefaultImports: true,
+        });
+
+        Object.entries(types).forEach(([file, content]) => {
+          monaco.languages.typescript.typescriptDefaults.addExtraLib(
+            content,
+            `node_modules/@types/tailwindcss/${file}`,
+          );
         });
 
         monacoTailwindcssRef.current = configureMonacoTailwindcss(monaco);
