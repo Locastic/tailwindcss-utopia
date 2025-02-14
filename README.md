@@ -129,7 +129,7 @@ Along with the tailwindcss plugin, we provide a custom tailwind-merge configurat
 To add support for that, first install the package:
 
 ```bash
-pnpm add -D tailwind-merge-utopia
+pnpm add -D utopia-tailwind-merge
 ```
 
 Then use it in your `utils.(js/ts)`:
