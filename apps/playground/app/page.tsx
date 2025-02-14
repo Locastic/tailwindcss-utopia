@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
 
 import {
@@ -9,10 +9,12 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
 
 const Editor = dynamic(() => import("./_components/editor"), { ssr: false });
 
 export default function Home() {
+  const ref = useRef<{ handleFormat: () => Promise<void> }>(null);
   const [srcDoc, setSrcDoc] = useState("");
   const [activeTab, setActiveTab] = useState<"html" | "css" | "config">("html");
 
@@ -23,6 +25,7 @@ export default function Home() {
         <ResizablePanelGroup direction="horizontal">
           <ResizablePanel className="h-full flex flex-col">
             <Tabs
+              className="flex justify-between items-center"
               value={activeTab}
               onValueChange={(t) =>
                 setActiveTab(t as "html" | "css" | "config")
@@ -33,9 +36,17 @@ export default function Home() {
                 <TabsTrigger value="css">CSS</TabsTrigger>
                 <TabsTrigger value="config">Config</TabsTrigger>
               </TabsList>
+              <div>
+                <Button
+                  variant="ghost"
+                  onClick={() => ref.current?.handleFormat()}
+                >
+                  Format
+                </Button>
+              </div>
             </Tabs>
             <div className="flex-1">
-              <Editor activeTab={activeTab} onChange={setSrcDoc} />
+              <Editor ref={ref} activeTab={activeTab} onChange={setSrcDoc} />
             </div>
           </ResizablePanel>
           <ResizableHandle />

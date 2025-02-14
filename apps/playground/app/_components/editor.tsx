@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Ref, useEffect, useImperativeHandle, useRef, useState } from "react";
 import * as monaco from "monaco-editor";
 import { Editor as MonacoEditor, loader } from "@monaco-editor/react";
 import {
@@ -55,9 +55,11 @@ const types = {
 };
 
 export default function Editor({
+  ref,
   activeTab,
   onChange,
 }: {
+  ref: Ref<{ handleFormat: () => Promise<void> }>;
   activeTab: "html" | "css" | "config";
   onChange: (content: string) => void;
 }) {
@@ -136,6 +138,20 @@ export default function Editor({
 
     editorRef.current.setModel(tabs[activeTab]);
   }, [editorRef, tabs, activeTab]);
+
+  useImperativeHandle(ref, () => {
+    return {
+      handleFormat: async () => {
+        if (!editorRef.current) return;
+
+        console.log("Formatting..");
+
+        await editorRef.current
+          ?.getAction("editor.action.formatDocument")
+          ?.run();
+      },
+    };
+  });
 
   return (
     <MonacoEditor

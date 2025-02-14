@@ -42,7 +42,6 @@
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-typescript": "^12.1.2",
     "@types/bun": "^1.1.10",
-    "bun-plugin-dts": "^0.3.0",
     "jest-diff": "^29.7.0",
     "prettier": "^3.4.2",
     "rollup": "^4.30.1",
