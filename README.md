@@ -4,7 +4,59 @@ A TailwindCSS plugin for the utopia fluid design system
 
 ## Install
 
-TODO
+```bash
+To install the utopia taiwindcss plugin:
+
+pnpm add -D tailwindcss-utopia
+```
+
+For the tailwind-merge utopia support:
+
+Then in your `tailwindcss.config.(js/ts)`:
+
+```typescript
+import { Config } from "tailwindcss";
+import tailwindcssUtopia, { extract } from "tailwindcss-utopia";
+
+const config = {
+  content: {
+    files: [
+      /* your files to be parsed */
+    ],
+    extract,
+  },
+  theme: {
+    extend: {
+      utopia: {
+        /* your custom utopia overrides */
+      },
+    },
+  },
+  plugins: [tailwindcssUtopia],
+} satisfies Config;
+
+export default config;
+```
+
+Then to add support for tailwind-merge, first install the package:
+
+```bash
+pnpm add -D tailwind-merge-utopia
+```
+
+Then use it in your `utils.(js/ts)`:
+
+```typescript
+import { extendTailwindMerge } from "tailwind-merge";
+import { withUtopia } from "utopia-tailwind-merge";
+import { clsx, type ClassValue } from "clsx";
+
+const twMerge = extendTailwindMerge(withUtopia);
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
 
 ## Features
 
