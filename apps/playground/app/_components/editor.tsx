@@ -139,6 +139,7 @@ export default function Editor({
 
   return (
     <MonacoEditor
+      options={{ minimap: { enabled: false } }}
       beforeMount={() => {
         monaco.languages.css.cssDefaults.setOptions({
           data: {
