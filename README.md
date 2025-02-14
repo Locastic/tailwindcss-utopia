@@ -148,5 +148,5 @@ export function cn(...inputs: ClassValue[]) {
 
 ## Credits
 
-- utopia-core
-- fluid.tw
+- [utopia-core](https://github.com/trys/utopia-core)
+- [fluid.tw](https://fluid.tw/)
