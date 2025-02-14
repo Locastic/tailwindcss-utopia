@@ -38,26 +38,6 @@ const config = {
 export default config;
 ```
 
-Then to add support for tailwind-merge, first install the package:
-
-```bash
-pnpm add -D tailwind-merge-utopia
-```
-
-Then use it in your `utils.(js/ts)`:
-
-```typescript
-import { extendTailwindMerge } from "tailwind-merge";
-import { withUtopia } from "utopia-tailwind-merge";
-import { clsx, type ClassValue } from "clsx";
-
-const twMerge = extendTailwindMerge(withUtopia);
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
-```
-
 ## Features
 
 - clamp based
@@ -145,6 +125,26 @@ You can extend any value in your `tailwindcss.config.ts` file, like the followin
 ## tailwind-merge
 
 Along with the tailwindcss plugin, we provide a custom tailwind-merge configuration.
+
+To add support for that, first install the package:
+
+```bash
+pnpm add -D tailwind-merge-utopia
+```
+
+Then use it in your `utils.(js/ts)`:
+
+```typescript
+import { extendTailwindMerge } from "tailwind-merge";
+import { withUtopia } from "utopia-tailwind-merge";
+import { clsx, type ClassValue } from "clsx";
+
+const twMerge = extendTailwindMerge(withUtopia);
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
 
 ## Credits
 
