@@ -74,6 +74,25 @@ export default function Editor({
 
   const monacoTailwindcssRef = useRef<MonacoTailwindcss>(null);
 
+  const handleConfigChange = () => {
+    const code = tabs.config.getValue();
+
+    const blob = new Blob([code], { type: "application/javascript" });
+    const url = URL.createObjectURL(blob);
+
+    import(/* webpackIgnore: true */ url)
+      .then((module) => {
+        const evaluatedCode: TailwindConfig = module.default;
+
+        monacoTailwindcssRef.current?.setTailwindConfig(evaluatedCode);
+
+        handleChange();
+      })
+      .catch((error) => {
+        console.error("Error evaluating code:", error.message);
+      });
+  };
+
   const handleChange = async () => {
     if (!monacoTailwindcssRef.current) return;
 
@@ -108,28 +127,11 @@ export default function Editor({
         tab.updateOptions({ tabSize: 2 });
       }
 
-      tab.onDidChangeContent(() => {
-        if (name === "config") {
-          const code = tab.getValue();
-
-          const blob = new Blob([code], { type: "application/javascript" });
-          const url = URL.createObjectURL(blob);
-
-          import(/* webpackIgnore: true */ url)
-            .then((module) => {
-              const evaluatedCode: TailwindConfig = module.default;
-
-              monacoTailwindcssRef.current?.setTailwindConfig(evaluatedCode);
-
-              handleChange();
-            })
-            .catch((error) => {
-              console.error("Error evaluating code:", error.message);
-            });
-        } else {
-          handleChange();
-        }
-      });
+      if (name === "config") {
+        tab.onDidChangeContent(handleConfigChange);
+      } else {
+        tab.onDidChangeContent(handleChange);
+      }
     });
   }, []);
 
@@ -199,7 +201,7 @@ export default function Editor({
 
         editor.setModel(tabs[activeTab]);
 
-        handleChange();
+        handleConfigChange();
       }}
     />
   );
